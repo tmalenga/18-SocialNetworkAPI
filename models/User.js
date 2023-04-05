@@ -39,8 +39,7 @@ const UserSchema = new Schema({
     getters: true
   },
   id: false
-}
-);
+});
 
 const User = model('User', UserSchema);
 

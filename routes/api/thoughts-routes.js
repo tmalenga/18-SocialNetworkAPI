@@ -15,6 +15,7 @@ router
 router
     .route('/:id')
     .get(getThoughtById)
+    
 
 router
     .route('/:thoughtId/reactions')
@@ -22,6 +23,7 @@ router
 
 router
     .route('/:thoughtId/:reactionId')
+    
     
 
 module.exports = router;
