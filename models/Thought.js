@@ -33,12 +33,17 @@ const ThoughtSchema = new Schema (
             type: String,
             required: true,
             minlength: 1,
-            maxlength: 280
+            maxlength: 280,
+            trim: true
         },       
         username: {
             type: String,
             required: true,
             ref: 'User'
+        },
+        userId:{
+          type: Types.ObjectId,
+          ref: 'User',
         },
         reactions: [ReactionSchema],
     },

@@ -3,10 +3,10 @@ const {
     getAllUsers,
     getUserById,
     createUser,
-    addFriend,
+    //addFriend,
     updateUser,
     deleteUser,
-    removeFriend
+    //removeFriend
 } = require('../../controllers/usersController');
 
 router

@@ -25,16 +25,16 @@ const thoughtController = {
 
     createThought({ params, body }, res) {
         Thought.create(body)
-            .then(({ _id}) => {
+            .then(( body ) => {
                 return User.findOneAndUpdate(
-                    { username: body.username },
-                    { $push: { thoughts: _id } },
+                    { _id: body.userId },
+                    { $push: { thoughts: body._id } },
                     { new: true }
                 );
             })
             .then(dbUserData => {
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this username!'});
+                    res.status(404).json({ message: 'No user found with this id!'});
                     return;
                 }
                 res.json(dbUserData);
@@ -84,13 +84,18 @@ const thoughtController = {
     },
 
     deleteThought({ params, body}, res) {
-        Thought.findOneAndDelete({ _id: params.id })
+        Thought.findOneAndDelete({ _id: params.thoughtid })
         .then(deletedThought => {
             if (!deletedThought) {
                 return res.status(404).json({ message: 'No thought with this ID!'})
             }
-            res.json(deletedThought);
+            return User.findOneAndUpdate(
+                {_id: body.userId},
+                {$pull: {thoughts: params.thoughtId} },
+                {new: true}
+            );
         })
+        .then(res.json(deletedThought))
         .catch(err => res.json(err));
     }
 };
