@@ -21,5 +21,4 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/socialMed
 
 mongoose.set('debug', true);
 
-
 app.listen(PORT, () => console.log(`Connected on localhost:${PORT}`));

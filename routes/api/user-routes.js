@@ -12,7 +12,9 @@ const {
 router
     .route('/')
     .get(getAllUsers)
-    .post(createUser);
+    .post(createUser)
+    .put(updateUser)
+    .delete(deleteUser);
 
 router
     .route('/:id')
@@ -20,9 +22,10 @@ router
     .put(updateUser)
     .delete(deleteUser)
 
-router
-    .route('/:userId/friends/:friendId')
-    .post(addFriend)
-    .delete(removeFriend)
+// Friend code not working, to return to if you have time!
+// router
+//     .route('/:userId/friends/:friendId')
+//     .post(addFriend)
+//     .delete(removeFriend)
 
 module.exports = router;
